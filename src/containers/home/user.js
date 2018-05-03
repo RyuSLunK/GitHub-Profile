@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class User extends Component {
-    // constructor(){
-    //     super();
-    //     //do stuff
-    // }
 
     render() {
         return (
@@ -16,10 +12,10 @@ class User extends Component {
                 <Paper elevation={4}>
                     <div className="container-fluid">
                         
-                        <div className="col-xs-3">
+                        <div className="col-xs-1">
                             <img style={{width: '100%',}} src={this.props.avatarUrl} />
                         </div>
-                        <div className="col-xs-9">
+                        <div className="col-xs-11">
                             <Typography variant="headline" component="h2">
                                 User Name: {this.props.userName}
                             </Typography>                        

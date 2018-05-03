@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getGistList } from '../../modules/gists';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
+import { Link } from 'react-router-dom';
 
 class Gists extends Component {
     // constructor(){
@@ -28,13 +29,8 @@ class Gists extends Component {
                  <Card key={gist.id} id={gist.id}>
                      <CardContent>
                          <Typography>
-                           GistName: {gist.url}
+                           <Link to={'/gists/' + gist.id}>GistName: {gist.url}</Link>
                            GistDescription: {gist.description}
-                             {/* RepoName: {repo.name}, 
-                             RepoDescription: {repo.description},
-                             RepoLanguage: {repo.language},
-                             RepoWatchers: {repo.watchers_count},
-                             RepoForks: {repo.forks_count} */}
                          </Typography>
                      </CardContent>
                  </Card>

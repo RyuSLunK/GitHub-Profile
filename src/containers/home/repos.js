@@ -3,8 +3,11 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getRepoList } from '../../modules/repos';
+import { getRepoList, getRepoInformation } from '../../modules/repos';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import { Link } from 'react-router-dom';
+
 
 class Repos extends Component {
     // constructor(){
@@ -28,13 +31,16 @@ class Repos extends Component {
                  <Card key={repo.id}>
                      <CardContent>
                          <Typography>
-                             RepoName: {repo.name}, 
+                             <Link to={'/' + repo.name + '/commits'}>RepoName: {repo.name}</Link>, 
                              RepoDescription: {repo.description},
                              RepoLanguage: {repo.language},
                              RepoWatchers: {repo.watchers_count},
                              RepoForks: {repo.forks_count}
                          </Typography>
                      </CardContent>
+                     <CardActions>
+                        <Button size="small" onClick={()=>this.props.getRepoInformation(repo)}>Learn More</Button>
+                    </CardActions>
                  </Card>
             );
         })
@@ -49,11 +55,7 @@ const mapDispatchToProps = dispatch =>
 bindActionCreators(
     {
         getRepoList,
-        // increment,
-        // incrementAsync,
-        // decrement,
-        // decrementAsync,
-        // changePage: () => push('/about-us')
+        getRepoInformation,
     },
     dispatch
 );  

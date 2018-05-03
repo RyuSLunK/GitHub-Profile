@@ -1,10 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getRepoList, getRepoInformation } from '../../modules/repos';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import { Link } from 'react-router-dom';
 
-const Repository = () => (
-  <div>
-    <h1>About Page</h1>
-    <p>Did you get here via Redux?</p>
-  </div>
-);
 
-export default Repository;
+class Repository extends Component {
+    // constructor(){
+    //     super();
+    //     //do stuff
+    // }
+    componentDidMount(){
+        // this.props.getRepoList();
+        if(this.props.commits.length === 0){
+          // console.log(this.props.location.match.params.repoName);
+          // getRepoInformation()
+        }
+    }
+    render() {
+        return (
+            <div style={{marginTop: '25px',}}>
+              {this.renderCommits()}
+            </div>
+        );
+    }
+
+     renderCommits = () => {
+        return this.props.commits.map(commit=>{
+            return (
+              // display commit sha, commit message and author name
+                 <Card key={commit.id}>
+                     <CardContent>
+                         <Typography>                             
+                             sha: {commit.sha},
+                             RepoLanguage: {commit.language},
+                             RepoWatchers: {commit.watchers_count},
+                             RepoForks: {commit.forks_count}
+                         </Typography>
+                     </CardContent>
+                     <CardActions>
+                        <Button size="small" onClick={()=>this.props.getRepoInformation(commit)}>Learn More</Button>
+                    </CardActions>
+                 </Card>
+            );
+        })
+    }    
+} 
+
+const mapStateToProps = state => ({
+    commits: state.repos.commits,
+    loading: state.repos.loading,
+});
+  
+const mapDispatchToProps = dispatch =>
+bindActionCreators(
+    {
+        getRepoList,
+        getRepoInformation,
+    },
+    dispatch
+);  
+
+export default connect(mapStateToProps, mapDispatchToProps)(Repository);

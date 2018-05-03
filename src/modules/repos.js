@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux';
+
 export const REPO_LIST_REQUESTED = 'repos/REPO_LIST_REQUESTED';
 export const REPO_LIST = 'repos/REPO_LIST';
 export const REPO_REQUESTED = 'repos/REPO_REQUESTED';
@@ -6,7 +8,7 @@ export const REPO = 'repos/REPO';
 const initialState = {
   loading: false,
   list: [],
-  repo: {},
+  commits: [],
 };
 
 export default (state = initialState, action) => {
@@ -33,7 +35,7 @@ export default (state = initialState, action) => {
     case REPO:
       return {
         ...state,
-        repo: action.payload,
+        commits: action.payload,
         loading: !state.loading,
       };
 
@@ -48,10 +50,8 @@ export const getRepoList = () => {
       type: REPO_LIST_REQUESTED,
     });
 
-    fetch('https://api.github.com/users/RyuSLunK/repos').then((response) => response.json())
+    fetch('https://api.github.com/users/octocat/repos').then((response) => response.json())
     .then((responseJson) => {
-    //   return responseJson.movies;
-        // console.log(responseJson);
       dispatch({
         type: REPO_LIST,
         payload: responseJson,
@@ -62,14 +62,21 @@ export const getRepoList = () => {
   };
 };
 
-export const getRepoInformation = () => {
+export const getRepoInformation = (repo) => {
   return dispatch => {
     dispatch({
       type: REPO_REQUESTED,
     });
+    console.log('getting repo information', repo);
+    fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`).then((response) => response.json())
+    .then((responseJson) => {
+      dispatch({
+        type: REPO,
+        payload: responseJson,
+      });
+      console.log('repo info',responseJson);
+      dispatch(push(`/${repo.name}/commits`));
 
-    dispatch({
-      type: REPO,
     });
   };
 };
