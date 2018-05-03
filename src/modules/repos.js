@@ -5,8 +5,8 @@ export const REPO = 'repos/REPO';
 
 const initialState = {
   loading: false,
-  userName: 'RyuSLunK',
-  avatarUrl: 'https://avatars1.githubusercontent.com/u/11950988?v=4',
+  list: [],
+  repo: {},
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case REPO_LIST:
       return {
         ...state,
-        ...action.payload,
+        list: action.payload,
         loading: !state.loading,
       };
 
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
     case REPO:
       return {
         ...state,
-        ...action.payload,
+        repo: action.payload,
         loading: !state.loading,
       };
 
@@ -47,10 +47,18 @@ export const getRepoList = () => {
     dispatch({
       type: REPO_LIST_REQUESTED,
     });
-    //get the data
-    dispatch({
-      type: REPO_LIST,
+
+    fetch('https://api.github.com/users/RyuSLunK/repos').then((response) => response.json())
+    .then((responseJson) => {
+    //   return responseJson.movies;
+        // console.log(responseJson);
+      dispatch({
+        type: REPO_LIST,
+        payload: responseJson,
+      });
     });
+
+ 
   };
 };
 
