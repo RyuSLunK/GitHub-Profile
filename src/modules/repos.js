@@ -76,9 +76,9 @@ export const getRepoInformation = (repo) => {
       type: REPO_REQUESTED,
     });
     fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
-        headers: {
-            'Authorization': 'Basic ' + btoa('RyuSLunK:5e11940d2e088049309561004a2a442de306419f'),
-        }
+        // headers: {
+        //     'Authorization': 'Basic ' + btoa('RyuSLunK:5e11940d2e088049309561004a2a442de306419f'),
+        // }
     }).then((response) => response.json())
     .then((responseJson) => {
       dispatch({
