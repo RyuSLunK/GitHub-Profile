@@ -9,12 +9,13 @@ import { Link } from 'react-router-dom';
 import Button from 'material-ui/Button';
 
 class Gists extends Component {
-    // constructor(){
-    //     super();
-    //     //do stuff
-    // }
+
     componentDidMount(){
-        this.props.getGistList();
+        if(this.props.gists.length > 0){
+            console.log('saved a network call!!!');
+        } else {
+            this.props.getGistList();
+        }
     }
     render() {
         return (
@@ -30,7 +31,7 @@ class Gists extends Component {
                  <Card key={gist.id} id={gist.id}>
                      <CardContent>
                          <Typography>
-                           <Link to={'/gists/' + gist.id}>GistName: {gist.url}</Link>
+                           GistName: {gist.url}
                            GistDescription: {gist.description}
                          </Typography>
                      </CardContent>

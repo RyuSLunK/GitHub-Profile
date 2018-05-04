@@ -58,6 +58,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'persist/REHYDRATE':
+
+    console.log('rehydrating!!!',action.payload);
+    return{
+        ...state,
+        ...action.payload.gists,
+    };
     case GIST_LIST_REQUESTED:
       return {
         ...state,
@@ -96,9 +103,9 @@ export const getGistList = () => {
     });
     //get the data
     fetch('https://api.github.com/users/octocat/gists', {
-      // headers: {
-      //     'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
-      // }
+      headers: {
+          'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
+      }
   }).then((response) => response.json())
     .then((responseJson) => {
         console.log(responseJson);
@@ -117,9 +124,9 @@ export const getGistInformation = (gist) => {
     });
 
     fetch(`https://api.github.com/gists/${gist.id}`, {
-      // headers: {
-      //     'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
-      // }
+      headers: {
+          'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
+      }
   }).then((response) => response.json())
     .then((responseJson) => {
         console.log('gist info',responseJson);

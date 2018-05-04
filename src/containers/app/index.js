@@ -16,7 +16,7 @@ const App = () => (
     <main>
       <Route exact path="/" component={Home} />
       <Route path="/:repoName/commits" component={Repository} />
-      <Route path="/gists/:gistId" component={Gist} />
+      <Route path="/gist/:gistId" component={Gist} />
       <Route exact path="/about-us" component={About} />
     </main>
   </div>

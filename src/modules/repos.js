@@ -14,10 +14,10 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'persist/REHYDRATE':
 
-        console.log('rehydrating!!!');
+        console.log('rehydrating!!!',action.payload);
         return{
             ...state,
-            ...action.payload,
+            ...action.payload.repos,
         };
     case REPO_LIST_REQUESTED:
       return {
@@ -57,9 +57,9 @@ export const getRepoList = () => {
     });
 
     fetch('https://api.github.com/users/octocat/repos', {
-        // headers: {
-        //     'Authorization': 'Basic ' + btoa('RyuSLunK:StarLord64'),
-        // }
+        headers: {
+            'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
+        }
     }).then((response) => response.json())
     .then((responseJson) => {
       dispatch({
@@ -80,7 +80,7 @@ export const getRepoInformation = (repo) => {
     console.log('getting repo information', repo);
     fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
         headers: {
-            'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
+            'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
         }
     }).then((response) => response.json())
     .then((responseJson) => {

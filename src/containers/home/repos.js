@@ -8,6 +8,17 @@ import Card, { CardActions, CardContent } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 
+const styles = {
+    cardContainer: {
+        flexWrap: 'wrap',
+        display: 'flex',
+        // justifyContent: 'space-around',
+    },
+    card: {
+        width: '32%', 
+        margin: '5px',
+    }
+}
 
 class Repos extends Component {
     // constructor(){
@@ -15,11 +26,15 @@ class Repos extends Component {
     //     //do stuff
     // }
     componentDidMount(){
-        this.props.getRepoList();
+        if(this.props.repos.length > 0){
+            console.log('just saved a network call!');
+        } else {
+            this.props.getRepoList();
+        }        
     }
     render() {
         return (
-            <div style={{marginTop: '25px',}}>
+            <div style={{...styles.cardContainer, marginTop: '25px',}}>
               {this.renderRepositories()}
             </div>
         );
@@ -28,7 +43,7 @@ class Repos extends Component {
      renderRepositories = props => {
         return this.props.repos.map(repo=>{
             return (
-                 <Card key={repo.id}>
+                 <Card style={styles.card} key={repo.id}>
                      <CardContent>
                          <Typography>
                              RepoName: {repo.name}, 

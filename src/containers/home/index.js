@@ -7,12 +7,6 @@ import Typography from 'material-ui/Typography';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {
-  increment,
-  incrementAsync,
-  decrement,
-  decrementAsync
-} from '../../modules/counter';
 import User from '../home/user';
 import Repos from '../home/repos';
 import Gists from '../home/gists';
@@ -33,25 +27,22 @@ const Home = props => (
     </Toolbar>
   </AppBar>
     <User />
-    <Repos />
-    <Gists />
+    <div className="col-md-8">
+      <Repos />
+    </div>
+    <div className="col-md-4"><Gists /></div>
+    
   </div>
 );
 
 const mapStateToProps = state => ({
-  count: state.counter.count,
-  isIncrementing: state.counter.isIncrementing,
-  isDecrementing: state.counter.isDecrementing
+
 });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      increment,
-      incrementAsync,
-      decrement,
-      decrementAsync,
-      changePage: () => push('/about-us')
+
     },
     dispatch
   );

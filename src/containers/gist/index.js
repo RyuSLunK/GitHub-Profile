@@ -1,19 +1,54 @@
-import React from 'react';
-import AppBar from 'material-ui/AppBar';
+import React, { Component } from 'react';
+import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-const Gist = () => (
-  <div>
-        <AppBar position="static" color="default">
-    <Toolbar>
-      <Typography variant="title" color="inherit">
-        Gist
-      </Typography>
-    </Toolbar>
-  </AppBar>
-    <h1>Unique Gist Page</h1>
-    <p>Did you get here via Redux?</p>
-  </div>
-);
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getRepoList, getRepoInformation } from '../../modules/repos';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import { Link } from 'react-router-dom';
 
-export default Gist;
+
+class Gist extends Component {
+
+    componentDidMount(){
+        // if(this.props.commits.length === 0){
+
+        // }
+    }
+
+    render() {
+      console.log('this is the gist component');
+        return (
+            <div style={{marginTop: '25px',}}>
+            <h1>This is the thing</h1>
+              <AppBar position="static" color="default">
+                <Toolbar>
+                  <Typography variant="title" color="inherit">
+                    <Link to="/">Go Back</Link>
+                  </Typography>
+                </Toolbar>
+              </AppBar>
+              <Typography variant="title">Gist</Typography>
+            </div>
+        );
+    }
+} 
+
+const mapStateToProps = state => ({
+    gist: state.gists.gist,
+    loading: state.gists.loading,
+});
+  
+const mapDispatchToProps = dispatch =>
+bindActionCreators(
+    {
+        // getRepoList,
+        // getRepoInformation,
+    },
+    dispatch
+);  
+
+export default connect(mapStateToProps, mapDispatchToProps)(Gist);

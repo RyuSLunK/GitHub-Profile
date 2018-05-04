@@ -12,27 +12,24 @@ import { Link } from 'react-router-dom';
 
 
 class Repository extends Component {
-    // constructor(){
-    //     super();
-    //     //do stuff
-    // }
+
     componentDidMount(){
-        // this.props.getRepoList();
         if(this.props.commits.length === 0){
-          // console.log(this.props.location.match.params.repoName);
-          // getRepoInformation()
+
         }
     }
+
     render() {
         return (
             <div style={{marginTop: '25px',}}>
-                <AppBar position="static" color="default">
-    <Toolbar>
-      <Typography variant="title" color="inherit">
-        Home
-      </Typography>
-    </Toolbar>
-  </AppBar>
+              <AppBar position="static" color="default">
+                <Toolbar>
+                  <Typography variant="title" color="inherit">
+                    <Link to="/">Go Back</Link>
+                  </Typography>
+                </Toolbar>
+              </AppBar>
+              <Typography variant="title">Commits</Typography>
               {this.renderCommits()}
             </div>
         );
@@ -44,14 +41,14 @@ class Repository extends Component {
               // display commit sha, commit message and author name
                  <Card key={commit.sha}>
                      <CardContent>
-                         <Typography>                             
-                             sha: {commit.sha},
-                             message: {commit.commit.message},
-                             name: {commit.commit.author.name},
-                         </Typography>
+                      <Typography>                             
+                        sha: {commit.sha},
+                        message: {commit.commit.message},
+                        name: {commit.commit.author.name},
+                      </Typography>
                      </CardContent>
                      <CardActions>
-                        <Button size="small" onClick={()=>this.props.getRepoInformation(commit)}>Learn More</Button>
+                      <Button size="small" onClick={()=>this.props.getRepoInformation(commit)}>Learn More</Button>
                     </CardActions>
                  </Card>
             );
