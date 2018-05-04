@@ -7,7 +7,6 @@ import gists from './gists';
 
 export default combineReducers({
   router: routerReducer,
-  counter,
   user,
   repos,
   gists,

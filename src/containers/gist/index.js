@@ -12,13 +12,6 @@ import { Link } from 'react-router-dom';
 
 
 class Gist extends Component {
-
-    componentDidMount(){
-        // if(this.props.commits.length === 0){
-
-        // }
-    }
-
     render() {
       console.log('this is the gist component');
         return (
@@ -32,6 +25,7 @@ class Gist extends Component {
                 </Toolbar>
               </AppBar>
               <Typography variant="title">Gist</Typography>
+              <p>{JSON.stringify(this.props.gist)}</p>
             </div>
         );
     }
@@ -42,13 +36,4 @@ const mapStateToProps = state => ({
     loading: state.gists.loading,
 });
   
-const mapDispatchToProps = dispatch =>
-bindActionCreators(
-    {
-        // getRepoList,
-        // getRepoInformation,
-    },
-    dispatch
-);  
-
-export default connect(mapStateToProps, mapDispatchToProps)(Gist);
+export default connect(mapStateToProps)(Gist);

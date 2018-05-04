@@ -12,7 +12,6 @@ const styles = {
     cardContainer: {
         flexWrap: 'wrap',
         display: 'flex',
-        // justifyContent: 'space-around',
     },
     card: {
         width: '32%', 
@@ -21,10 +20,6 @@ const styles = {
 }
 
 class Repos extends Component {
-    // constructor(){
-    //     super();
-    //     //do stuff
-    // }
     componentDidMount(){
         if(this.props.repos.length > 0){
             console.log('just saved a network call!');
@@ -32,10 +27,11 @@ class Repos extends Component {
             this.props.getRepoList();
         }        
     }
+
     render() {
         return (
             <div style={{...styles.cardContainer, marginTop: '25px',}}>
-              {this.renderRepositories()}
+              {this.props.repos.length > 0 ? this.renderRepositories() : null}
             </div>
         );
     }

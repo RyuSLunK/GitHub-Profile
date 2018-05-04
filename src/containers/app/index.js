@@ -9,10 +9,6 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 const App = () => (
   <div>
-    {/* <header>
-      <Link to="/">Home</Link>
-      <Link to="/about-us">About</Link>
-    </header> */}
     <main>
       <Route exact path="/" component={Home} />
       <Route path="/:repoName/commits" component={Repository} />

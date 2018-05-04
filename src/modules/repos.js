@@ -13,8 +13,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'persist/REHYDRATE':
-
-        console.log('rehydrating!!!',action.payload);
         return{
             ...state,
             ...action.payload.repos,
@@ -52,23 +50,23 @@ export default (state = initialState, action) => {
 
 export const getRepoList = () => {
   return dispatch => {
+    
     dispatch({
       type: REPO_LIST_REQUESTED,
     });
 
     fetch('https://api.github.com/users/octocat/repos', {
         headers: {
-            'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
+            'Authorization': 'Basic ' + btoa('RyuSLunK:24eda067e6dc31baf0d47df8a50606962ed43233'),
         }
-    }).then((response) => response.json())
+    })
+    .then((response) => response.json())
     .then((responseJson) => {
       dispatch({
         type: REPO_LIST,
         payload: responseJson,
       });
     });
-
- 
   };
 };
 
@@ -77,10 +75,9 @@ export const getRepoInformation = (repo) => {
     dispatch({
       type: REPO_REQUESTED,
     });
-    console.log('getting repo information', repo);
     fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
         headers: {
-            'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
+            'Authorization': 'Basic ' + btoa('RyuSLunK:24eda067e6dc31baf0d47df8a50606962ed43233'),
         }
     }).then((response) => response.json())
     .then((responseJson) => {
@@ -88,9 +85,7 @@ export const getRepoInformation = (repo) => {
         type: REPO,
         payload: responseJson,
       });
-      console.log('repo info',responseJson);
       dispatch(push(`/${repo.name}/commits`));
-
     });
   };
 };

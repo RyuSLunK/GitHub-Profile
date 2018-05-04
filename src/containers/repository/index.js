@@ -12,13 +12,6 @@ import { Link } from 'react-router-dom';
 
 
 class Repository extends Component {
-
-    componentDidMount(){
-        if(this.props.commits.length === 0){
-
-        }
-    }
-
     render() {
         return (
             <div style={{marginTop: '25px',}}>
@@ -30,7 +23,7 @@ class Repository extends Component {
                 </Toolbar>
               </AppBar>
               <Typography variant="title">Commits</Typography>
-              {this.renderCommits()}
+              {this.props.commits.length > 0 ? this.renderCommits() : null}
             </div>
         );
     }
@@ -38,7 +31,6 @@ class Repository extends Component {
      renderCommits = () => {
         return this.props.commits.map(commit=>{
             return (
-              // display commit sha, commit message and author name
                  <Card key={commit.sha}>
                      <CardContent>
                       <Typography>                             
@@ -60,14 +52,5 @@ const mapStateToProps = state => ({
     commits: state.repos.commits,
     loading: state.repos.loading,
 });
-  
-const mapDispatchToProps = dispatch =>
-bindActionCreators(
-    {
-        getRepoList,
-        getRepoInformation,
-    },
-    dispatch
-);  
 
-export default connect(mapStateToProps, mapDispatchToProps)(Repository);
+export default connect(mapStateToProps)(Repository);

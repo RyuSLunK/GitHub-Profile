@@ -104,7 +104,7 @@ export const getGistList = () => {
     //get the data
     fetch('https://api.github.com/users/octocat/gists', {
       headers: {
-          'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
+          'Authorization': 'Basic ' + btoa('RyuSLunK:24eda067e6dc31baf0d47df8a50606962ed43233'),
       }
   }).then((response) => response.json())
     .then((responseJson) => {
@@ -125,7 +125,7 @@ export const getGistInformation = (gist) => {
 
     fetch(`https://api.github.com/gists/${gist.id}`, {
       headers: {
-          'Authorization': 'Basic ' + btoa('RyuSLunK:454381c001e4c16b972cd435153e42323b37718b'),
+          'Authorization': 'Basic ' + btoa('RyuSLunK:24eda067e6dc31baf0d47df8a50606962ed43233'),
       }
   }).then((response) => response.json())
     .then((responseJson) => {

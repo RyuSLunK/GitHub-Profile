@@ -13,7 +13,7 @@ class User extends Component {
                     <div className="container-fluid">
                         
                         <div className="col-xs-1">
-                            <img style={{width: '100%',}} src={this.props.avatarUrl} />
+                            <img alt="" style={{width: '100%',}} src={this.props.avatarUrl} />
                         </div>
                         <div className="col-xs-11">
                             <Typography variant="headline" component="h2">
@@ -37,17 +37,5 @@ const mapStateToProps = state => ({
     avatarUrl: state.user.avatarUrl,
     userName: state.user.userName
 });
-  
-const mapDispatchToProps = dispatch =>
-bindActionCreators(
-    {
-        // increment,
-        // incrementAsync,
-        // decrement,
-        // decrementAsync,
-        // changePage: () => push('/about-us')
-    },
-    dispatch
-);  
 
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default connect(mapStateToProps)(User);

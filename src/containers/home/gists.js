@@ -20,7 +20,7 @@ class Gists extends Component {
     render() {
         return (
             <div style={{marginTop: '25px',}}>
-              {this.renderGists()}
+              {this.props.gists.length > 0 ? this.renderGists() : null}
             </div>
         );
     }
