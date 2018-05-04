@@ -1,5 +1,4 @@
 import { push } from 'react-router-redux';
-
 export const REPO_LIST_REQUESTED = 'repos/REPO_LIST_REQUESTED';
 export const REPO_LIST = 'repos/REPO_LIST';
 export const REPO_REQUESTED = 'repos/REPO_REQUESTED';
@@ -13,6 +12,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'persist/REHYDRATE':
+
+        console.log('rehydrating!!!');
+        return{
+            ...state,
+            ...action.payload,
+        };
     case REPO_LIST_REQUESTED:
       return {
         ...state,
@@ -51,9 +57,9 @@ export const getRepoList = () => {
     });
 
     fetch('https://api.github.com/users/octocat/repos', {
-        headers: {
-            'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
-        }
+        // headers: {
+        //     'Authorization': 'Basic ' + btoa('RyuSLunK:StarLord64'),
+        // }
     }).then((response) => response.json())
     .then((responseJson) => {
       dispatch({

@@ -1,3 +1,6 @@
+import { push } from 'react-router-redux';
+
+
 export const GIST_LIST_REQUESTED = 'gists/GIST_LIST_REQUESTED';
 export const GIST_LIST = 'gists/GIST_LIST';
 export const GIST_REQUESTED = 'gists/GIST_REQUESTED';
@@ -77,7 +80,7 @@ export default (state = initialState, action) => {
     case GIST:
       return {
         ...state,
-        ...action.payload,
+        gist: action.payload,
         loading: !state.loading,
       };
 
@@ -93,12 +96,11 @@ export const getGistList = () => {
     });
     //get the data
     fetch('https://api.github.com/users/octocat/gists', {
-      headers: {
-          'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
-      }
+      // headers: {
+      //     'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
+      // }
   }).then((response) => response.json())
     .then((responseJson) => {
-    //   return responseJson.movies;
         console.log(responseJson);
       dispatch({
         type: GIST_LIST,
@@ -108,14 +110,24 @@ export const getGistList = () => {
   };
 };
 
-export const getGistInformation = () => {
+export const getGistInformation = (gist) => {
   return dispatch => {
     dispatch({
       type: GIST_REQUESTED,
     });
 
-    dispatch({
-      type: GIST,
+    fetch(`https://api.github.com/gists/${gist.id}`, {
+      // headers: {
+      //     'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
+      // }
+  }).then((response) => response.json())
+    .then((responseJson) => {
+        console.log('gist info',responseJson);
+      dispatch({
+        type: GIST,
+        payload: responseJson,
+      });
+      dispatch(push(`/gist/${gist.id}`));
     });
   };
 };

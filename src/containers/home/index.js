@@ -25,6 +25,13 @@ const styles = {
 
 const Home = props => (
   <div className="container-fluid">
+      <AppBar position="static" color="default">
+    <Toolbar>
+      <Typography variant="title" color="inherit">
+        Home
+      </Typography>
+    </Toolbar>
+  </AppBar>
     <User />
     <Repos />
     <Gists />

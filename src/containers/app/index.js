@@ -13,13 +13,6 @@ const App = () => (
       <Link to="/">Home</Link>
       <Link to="/about-us">About</Link>
     </header> */}
-    <AppBar position="static" color="default">
-    <Toolbar>
-      <Typography variant="title" color="inherit">
-        Home
-      </Typography>
-    </Toolbar>
-  </AppBar>
     <main>
       <Route exact path="/" component={Home} />
       <Route path="/:repoName/commits" component={Repository} />

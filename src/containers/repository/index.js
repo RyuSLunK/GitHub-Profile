@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getRepoList, getRepoInformation } from '../../modules/repos';
@@ -24,6 +26,13 @@ class Repository extends Component {
     render() {
         return (
             <div style={{marginTop: '25px',}}>
+                <AppBar position="static" color="default">
+    <Toolbar>
+      <Typography variant="title" color="inherit">
+        Home
+      </Typography>
+    </Toolbar>
+  </AppBar>
               {this.renderCommits()}
             </div>
         );

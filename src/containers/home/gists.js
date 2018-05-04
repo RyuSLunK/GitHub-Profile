@@ -3,9 +3,10 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getGistList } from '../../modules/gists';
+import { getGistList, getGistInformation } from '../../modules/gists';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import { Link } from 'react-router-dom';
+import Button from 'material-ui/Button';
 
 class Gists extends Component {
     // constructor(){
@@ -33,6 +34,9 @@ class Gists extends Component {
                            GistDescription: {gist.description}
                          </Typography>
                      </CardContent>
+                    <CardActions>
+                    <Button size="small" onClick={()=>this.props.getGistInformation(gist)}>Learn More</Button>
+                    </CardActions>
                  </Card>
             );
         })
@@ -47,6 +51,7 @@ const mapDispatchToProps = dispatch =>
 bindActionCreators(
     {
         getGistList,
+        getGistInformation,
     },
     dispatch
 );  
