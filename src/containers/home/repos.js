@@ -31,7 +31,7 @@ class Repos extends Component {
                  <Card key={repo.id}>
                      <CardContent>
                          <Typography>
-                             <Link to={'/' + repo.name + '/commits'}>RepoName: {repo.name}</Link>, 
+                             RepoName: {repo.name}, 
                              RepoDescription: {repo.description},
                              RepoLanguage: {repo.language},
                              RepoWatchers: {repo.watchers_count},

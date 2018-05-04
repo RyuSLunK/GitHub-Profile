@@ -92,7 +92,11 @@ export const getGistList = () => {
       type: GIST_LIST_REQUESTED,
     });
     //get the data
-    fetch('https://api.github.com/users/octocat/gists').then((response) => response.json())
+    fetch('https://api.github.com/users/octocat/gists', {
+      headers: {
+          'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
+      }
+  }).then((response) => response.json())
     .then((responseJson) => {
     //   return responseJson.movies;
         console.log(responseJson);

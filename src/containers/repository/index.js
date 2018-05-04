@@ -33,13 +33,12 @@ class Repository extends Component {
         return this.props.commits.map(commit=>{
             return (
               // display commit sha, commit message and author name
-                 <Card key={commit.id}>
+                 <Card key={commit.sha}>
                      <CardContent>
                          <Typography>                             
                              sha: {commit.sha},
-                             RepoLanguage: {commit.language},
-                             RepoWatchers: {commit.watchers_count},
-                             RepoForks: {commit.forks_count}
+                             message: {commit.commit.message},
+                             name: {commit.commit.author.name},
                          </Typography>
                      </CardContent>
                      <CardActions>

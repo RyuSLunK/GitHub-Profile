@@ -50,7 +50,11 @@ export const getRepoList = () => {
       type: REPO_LIST_REQUESTED,
     });
 
-    fetch('https://api.github.com/users/octocat/repos').then((response) => response.json())
+    fetch('https://api.github.com/users/octocat/repos', {
+        headers: {
+            'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
+        }
+    }).then((response) => response.json())
     .then((responseJson) => {
       dispatch({
         type: REPO_LIST,
@@ -68,7 +72,11 @@ export const getRepoInformation = (repo) => {
       type: REPO_REQUESTED,
     });
     console.log('getting repo information', repo);
-    fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`).then((response) => response.json())
+    fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
+        headers: {
+            'Authorization': 'Basic ' + btoa('RyuSLunK:140c1233da3f9d6127c3e58ec9e94f7116d095e5'),
+        }
+    }).then((response) => response.json())
     .then((responseJson) => {
       dispatch({
         type: REPO,
