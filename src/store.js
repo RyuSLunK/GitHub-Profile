@@ -23,6 +23,6 @@ const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
 let store = createStore(rootReducer, initialState, composedEnhancers);
 
-persistStore(store);
-
+// persistStore(store).purge();
+persistStore(store)
 export default store;

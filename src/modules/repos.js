@@ -56,9 +56,9 @@ export const getRepoList = () => {
     });
 
     fetch('https://api.github.com/users/octocat/repos', {
-        headers: {
-            'Authorization': 'Basic ' + btoa('RyuSLunK:24eda067e6dc31baf0d47df8a50606962ed43233'),
-        }
+        // headers: {
+        //     'Authorization': 'Basic ' + btoa('RyuSLunK:5e11940d2e088049309561004a2a442de306419f'),
+        // }
     })
     .then((response) => response.json())
     .then((responseJson) => {
@@ -77,7 +77,7 @@ export const getRepoInformation = (repo) => {
     });
     fetch(`https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits`, {
         headers: {
-            'Authorization': 'Basic ' + btoa('RyuSLunK:24eda067e6dc31baf0d47df8a50606962ed43233'),
+            'Authorization': 'Basic ' + btoa('RyuSLunK:5e11940d2e088049309561004a2a442de306419f'),
         }
     }).then((response) => response.json())
     .then((responseJson) => {

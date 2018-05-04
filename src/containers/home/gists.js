@@ -19,8 +19,11 @@ class Gists extends Component {
     }
     render() {
         return (
+            <div>
+                <h2>Gists</h2>
             <div style={{marginTop: '25px',}}>
               {this.props.gists.length > 0 ? this.renderGists() : null}
+            </div>
             </div>
         );
     }
@@ -30,10 +33,9 @@ class Gists extends Component {
             return (
                  <Card key={gist.id} id={gist.id}>
                      <CardContent>
-                         <Typography>
-                           GistName: {gist.url}
-                           GistDescription: {gist.description}
-                         </Typography>
+                         <h3>{gist.files[Object.keys(gist.files)[0]].filename}</h3>
+                         <p>{gist.description}</p>  
+                           <a href={gist.url}>See on GitHub</a>      
                      </CardContent>
                     <CardActions>
                     <Button size="small" onClick={()=>this.props.getGistInformation(gist)}>Learn More</Button>

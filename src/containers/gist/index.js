@@ -13,10 +13,8 @@ import { Link } from 'react-router-dom';
 
 class Gist extends Component {
     render() {
-      console.log('this is the gist component');
         return (
             <div style={{marginTop: '25px',}}>
-            <h1>This is the thing</h1>
               <AppBar position="static" color="default">
                 <Toolbar>
                   <Typography variant="title" color="inherit">
@@ -25,7 +23,8 @@ class Gist extends Component {
                 </Toolbar>
               </AppBar>
               <Typography variant="title">Gist</Typography>
-              <p>{JSON.stringify(this.props.gist)}</p>
+              <code>{this.props.gist.files[Object.keys(this.props.gist.files)[0]].content}</code>
+              {/* <p>{JSON.stringify(this.props.gist)}</p> */}
             </div>
         );
     }

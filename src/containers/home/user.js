@@ -4,6 +4,16 @@ import Typography from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+const styles = {
+    avatar: {
+        borderRadius: '100%',
+        width: 75,
+        height: 75,
+        border: '5px solid white',
+        boxShadow: '2px 2px 2px 2px black',
+    }
+}
+
 class User extends Component {
 
     render() {
@@ -12,17 +22,14 @@ class User extends Component {
                 <Paper elevation={4}>
                     <div className="container-fluid">
                         
-                        <div className="col-xs-1">
-                            <img alt="" style={{width: '100%',}} src={this.props.avatarUrl} />
+                        <div className="col-xs-2">
+                            <img alt="" style={styles.avatar} src={this.props.avatarUrl} />
                         </div>
-                        <div className="col-xs-11">
+                        <div className="col-xs-10">
                             <Typography variant="headline" component="h2">
                                 User Name: {this.props.userName}
                             </Typography>                        
                         </div>
-                        <Typography component="p">
-                            This is where the user information will go.
-                        </Typography>
                         <Typography component="p">
                             
                         </Typography>
